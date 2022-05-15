@@ -10,14 +10,10 @@ return new class extends Migration {
    *
    * @return void
    */
-  public function up() {
-    Schema::create('congregations', function (Blueprint $table) {
+  public function up(): void {
+    Schema::create('user_congregation', function (Blueprint $table) {
       $table->id();
-      $table->string('name');
-      $table->string('code')->unique()->nullable(false);
-      $table->string('state')->default('active');
-      $table->string('city')->nullable();
-      $table->string('country')->nullable();
+      $table->string("role")->default("member");
       $table->timestamps();
     });
   }
@@ -28,6 +24,6 @@ return new class extends Migration {
    * @return void
    */
   public function down() {
-    Schema::dropIfExists('congregations');
+    Schema::dropIfExists('user_congregation');
   }
 };

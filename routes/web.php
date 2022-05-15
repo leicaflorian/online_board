@@ -14,9 +14,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+  return view('welcome');
 });
 
-Auth::routes();
+Route::get('/search', function () {
+  return view('welcome');
+})->name('search');
+
+\Illuminate\Support\Facades\Auth::routes([
+  'register' => false,
+  'reset'    => false,
+  'verify'   => false,
+]);
+
+Route::get('/google-login', [\App\Http\Controllers\GoogleAuthController::class, "redirectToProvider"]);
+Route::get('/callback', [\App\Http\Controllers\GoogleAuthController::class, "handleProviderCallback"]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

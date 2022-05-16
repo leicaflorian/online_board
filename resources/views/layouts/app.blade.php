@@ -11,6 +11,7 @@
 
   <!-- Scripts -->
   <script src="{{ asset('js/app.js') }}" defer></script>
+  <script src="{{ asset('js/generic.js') }}" ></script>
 
   <!-- Fonts -->
   <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -20,24 +21,25 @@
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-<div id="app">
-{{--  @auth--}}
-    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+<div id="app" class="">
+  <header class="c-header" id="page-header">
+    <div class="py-5" id="page-main-title">
+      <h1 class="display-2 text-center">Bacheca Online</h1>
+    </div>
+
+    <nav class="navbar navbar-expand-md navbar-dark shadow-sm"
+         id="page-navbar">
       <div class="container">
         <a class="navbar-brand" href="{{ url('/') }}">
-          {{ config('app.name', 'Laravel') }}
+          Bacheca Online
         </a>
+
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
           <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <!-- Left Side Of Navbar -->
-          <ul class="navbar-nav me-auto">
-
-          </ul>
-
           <!-- Right Side Of Navbar -->
           <ul class="navbar-nav ms-auto">
             <!-- Authentication Links -->
@@ -77,9 +79,15 @@
         </div>
       </div>
     </nav>
-{{--  @endauth--}}
+  </header>
 
   <main class="py-4">
+    @if (session('status'))
+      <div class="alert alert-success" role="alert">
+        {{ session('status') }}
+      </div>
+    @endif
+
     @yield('content')
   </main>
 </div>

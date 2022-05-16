@@ -2,7 +2,13 @@
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
 // Variables
-@import 'variables';
+@import 'partials/variables';
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+@import 'partials/css_variables';
+@import 'partials/header';
+
+body{
+  min-height: 300vh;
+}

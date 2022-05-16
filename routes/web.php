@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-  return view('welcome');
-});
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 
 Route::get('/search', function () {
   return view('welcome');
@@ -30,4 +28,3 @@ Route::get('/search', function () {
 Route::get('/google-login', [\App\Http\Controllers\GoogleAuthController::class, "redirectToProvider"]);
 Route::get('/callback', [\App\Http\Controllers\GoogleAuthController::class, "handleProviderCallback"]);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

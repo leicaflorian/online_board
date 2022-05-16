@@ -2,27 +2,39 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Congregation;
+use App\Models\User;
+use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class HomeController extends Controller
-{
+class HomeController extends Controller {
+  /**
+   * Create a new controller instance.
+   *
+   * @return void
+   */
+  public function __construct() {
+  }
+  
+  /**
+   * Show the application dashboard.
+   *
+   * @return Renderable
+   */
+  public function index() {
     /**
-     * Create a new controller instance.
-     *
-     * @return void
+     * @var User $user
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
+    $user = Auth::user();
+    
+    if ($user) {
+      $congregations = $user->congregations;
     }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function index()
-    {
-        return view('home');
-    }
+    
+    
+    return view('home', [
+      "congregations" => $congregations ?? null
+    ]);
+  }
 }

@@ -14,6 +14,13 @@ return new class extends Migration {
     Schema::create('user_congregation', function (Blueprint $table) {
       $table->id();
       $table->string("role")->default("member");
+  
+      $table->unsignedBigInteger("user_id");
+      $table->foreign("user_id")->references("id")->on("users");
+  
+      $table->unsignedBigInteger("congregation_id");
+      $table->foreign("congregation_id")->references("id")->on("congregations");
+      
       $table->timestamps();
     });
   }

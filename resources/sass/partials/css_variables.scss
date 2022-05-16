@@ -1,0 +1,24 @@
+
+:root {
+  --bs-body-bg: var(--bs-dark);
+  --bs-body-color: white;
+  --bs-secondary: #424242;
+
+
+}
+
+
+.card {
+  --bs-card-bg: var(--bs-secondary);
+  --bs-card-color: var(--bs-text-color);
+}
+
+.form-control {
+  color: var(--bs-text-color);
+  background-color: var(--bs-secondary);
+
+  &:focus {
+    color: var(--bs-text-color);
+    background-color: var(--bs-secondary);
+  }
+}
